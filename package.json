@@ -1,0 +1,48 @@
+{
+  "name": "claude-voice",
+  "version": "1.0.0",
+  "description": "Voice notifications for Claude Code with configurable TTS (ElevenLabs & macOS say)",
+  "main": "lib/index.js",
+  "bin": {
+    "claude-voice-setup": "./bin/claude-voice-setup.js",
+    "voice-use-elevenlabs": "./bin/voice-use-elevenlabs.js",
+    "voice-use-apple": "./bin/voice-use-apple.js",
+    "voice-config": "./bin/voice-config.js",
+    "voice-set-voice": "./bin/voice-set-voice.js",
+    "voice-test": "./bin/voice-test.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "config/",
+    "templates/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "os": [
+    "darwin"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^0.11.1",
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "voice",
+    "notifications",
+    "tts",
+    "elevenlabs",
+    "text-to-speech"
+  ],
+  "author": "Your Team",
+  "license": "MIT"
+}
