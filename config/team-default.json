@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "tts_service": "elevenlabs",
+  "fallback_to_say": true,
+  "verbosity": "moderate",
+  "filters": {
+    "min_duration_ms": 5000,
+    "enabled_tools": ["*"],
+    "excluded_tools": ["Read"],
+    "speak_errors": true,
+    "speak_completions": true,
+    "speak_responses": true
+  },
+  "elevenlabs": {
+    "voice_id": "XsmrVB66q3D4TaXVaWNF",
+    "model_id": "eleven_flash_v2_5",
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "optimize_streaming_latency": 2
+  },
+  "macos_say": {
+    "voice": "Samantha",
+    "rate": 200
+  }
+}
