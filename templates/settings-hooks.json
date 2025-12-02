@@ -1,0 +1,40 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "VOICE_EVENT_TYPE=notification node [VOICE_NOTIFY_PATH]",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node [VOICE_NOTIFY_PATH]",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "VOICE_EVENT_TYPE=stop node [VOICE_NOTIFY_PATH]",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
