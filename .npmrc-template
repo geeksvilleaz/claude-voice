@@ -1,0 +1,4 @@
+# GitHub Packages Registry Configuration
+# Copy this to ~/.npmrc and authenticate with: npm login --scope=@your-org --registry=https://npm.pkg.github.com
+
+@your-org:registry=https://npm.pkg.github.com
