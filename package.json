@@ -1,15 +1,21 @@
 {
-  "name": "claude-voice",
+  "name": "@geeksville/claude-voice",
   "version": "1.0.0",
   "description": "Voice notifications for Claude Code with configurable TTS (ElevenLabs & macOS say)",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "url": "git+ssh://git@github.com/geeksvilleaz/claude-voice.git"
+  },
   "main": "lib/index.js",
   "bin": {
-    "claude-voice-setup": "./bin/claude-voice-setup.js",
-    "voice-use-elevenlabs": "./bin/voice-use-elevenlabs.js",
-    "voice-use-apple": "./bin/voice-use-apple.js",
-    "voice-config": "./bin/voice-config.js",
-    "voice-set-voice": "./bin/voice-set-voice.js",
-    "voice-test": "./bin/voice-test.js"
+    "claude-voice-setup": "bin/claude-voice-setup.js",
+    "voice-use-elevenlabs": "bin/voice-use-elevenlabs.js",
+    "voice-use-apple": "bin/voice-use-apple.js",
+    "voice-config": "bin/voice-config.js",
+    "voice-set-voice": "bin/voice-set-voice.js",
+    "voice-test": "bin/voice-test.js"
   },
   "files": [
     "bin/",
@@ -26,7 +32,8 @@
     "darwin"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "node bin/install-from-git.js"
   },
   "dependencies": {
     "@elevenlabs/elevenlabs-js": "^2.26.0",
@@ -44,5 +51,13 @@
     "text-to-speech"
   ],
   "author": "Your Team",
-  "license": "MIT"
+  "license": "MIT",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "bugs": {
+    "url": "https://github.com/geeksvilleaz/claude-voice/issues"
+  },
+  "homepage": "https://github.com/geeksvilleaz/claude-voice#readme"
 }

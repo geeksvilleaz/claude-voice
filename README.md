@@ -19,20 +19,44 @@ Voice notifications for Claude Code with configurable TTS (ElevenLabs & macOS sa
 - Node.js >=16
 - Claude Code installed
 
-### Install
+### Method 1: Install from Git (Recommended)
+
+Clone the repository and run the installation script:
+
+```bash
+# Clone repository
+git clone https://github.com/geeksvilleaz/claude-voice.git
+cd claude-voice
+
+# Install dependencies and setup
+npm install
+npm run setup
+```
+
+The setup will:
+1. Install dependencies
+2. Create symlinks for CLI commands
+3. Configure your TTS provider
+4. Set up Claude Code hooks
+5. Install shell helper functions
+6. Test the installation
+
+**To update:**
+```bash
+cd claude-voice
+git pull
+npm install
+npm run setup
+```
+
+### Method 2: Install from npm (if available)
 
 ```bash
 npm install -g claude-voice
 claude-voice-setup
 ```
 
-The setup will:
-1. Configure your TTS provider
-2. Set up Claude Code hooks
-3. Install shell helper functions
-4. Test the installation
-
-### For Team Distribution (GitHub Packages)
+### Method 3: Team Distribution (GitHub Packages)
 
 **One-time setup:**
 
@@ -201,17 +225,16 @@ voice-config --edit
 
 ```bash
 # Clone repo
-git clone https://github.com/your-org/claude-voice
+git clone https://github.com/geeksvilleaz/claude-voice
 cd claude-voice
 
-# Install dependencies
+# Install dependencies and setup
 npm install
-
-# Test locally
-npm link
-claude-voice-setup
+npm run setup
 
 # Make changes and test
+voice-test
+# or run directly:
 node bin/voice-test.js
 ```
 
