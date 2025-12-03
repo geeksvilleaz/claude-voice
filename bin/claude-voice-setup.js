@@ -5,6 +5,7 @@ const { existsSync, readFileSync, writeFileSync, copyFileSync, mkdirSync, append
 const { join } = require('path');
 const { execSync, spawn } = require('child_process');
 const inquirer = require('inquirer');
+const stripJsonComments = require('strip-json-comments');
 
 const HOME = process.env.HOME;
 const CLAUDE_DIR = join(HOME, '.claude');
@@ -147,7 +148,8 @@ async function configureHooks() {
   // Load existing settings or create new
   let settings = {};
   if (existsSync(SETTINGS_FILE)) {
-    settings = JSON.parse(readFileSync(SETTINGS_FILE, 'utf8'));
+    const settingsContent = readFileSync(SETTINGS_FILE, 'utf8');
+    settings = JSON.parse(stripJsonComments(settingsContent));
   }
 
   // Ensure hooks object exists
