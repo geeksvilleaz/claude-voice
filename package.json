@@ -15,7 +15,8 @@
     "voice-use-apple": "bin/voice-use-apple.js",
     "voice-config": "bin/voice-config.js",
     "voice-set-voice": "bin/voice-set-voice.js",
-    "voice-test": "bin/voice-test.js"
+    "voice-test": "bin/voice-test.js",
+    "voice-mode": "bin/voice-mode.js"
   },
   "files": [
     "bin/",

@@ -9,7 +9,9 @@
     "excluded_tools": ["Read"],
     "speak_errors": true,
     "speak_completions": true,
-    "speak_responses": true
+    "speak_responses": true,
+    "speak_only_when_waiting": false,
+    "speak_only_on_completion": false
   },
   "elevenlabs": {
     "voice_id": "XsmrVB66q3D4TaXVaWNF",

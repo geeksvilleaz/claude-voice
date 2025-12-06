@@ -25,3 +25,15 @@ voice-status() {
     voice-config --show | grep "tts_service"
   fi
 }
+
+voice-mode-waiting() {
+  voice-mode waiting
+}
+
+voice-mode-completion() {
+  voice-mode completion
+}
+
+voice-mode-normal() {
+  voice-mode normal
+}

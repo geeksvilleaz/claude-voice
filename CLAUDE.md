@@ -27,6 +27,11 @@ node lib/voice-notify.js
 # Test specific CLI commands
 node bin/voice-test.js
 node bin/voice-config.js --show
+
+# Test notification modes
+node bin/voice-mode.js waiting     # Only speak when waiting for input
+node bin/voice-mode.js completion  # Only speak when tasks complete
+node bin/voice-mode.js normal      # Speak on all enabled events
 ```
 
 ### Publishing
@@ -48,6 +53,7 @@ npm publish
 - `voice-use-elevenlabs.js` / `voice-use-apple.js` - Switch TTS provider
 - `voice-set-voice.js` - Change voice for current provider
 - `voice-config.js` - View/edit configuration interactively
+- `voice-mode.js` - Switch notification modes (waiting/completion/normal)
 
 **Core Library** (`lib/`):
 - `voice-notify.js` - Main entry point invoked by Claude Code hooks
@@ -88,12 +94,36 @@ Claude Code Hook → voice-notify.js → Event Filter → Message Generator → 
 - `tts/elevenlabs.js` - ElevenLabs API integration with streaming + afplay
 - `tts/macos-say.js` - macOS say command wrapper
 
+### Notification Modes
+
+The package supports three notification modes (lib/utils/event-filter.js:19-40):
+
+**Normal Mode** (default):
+- Speaks on all enabled events based on filter settings
+- Respects `speak_completions`, `speak_responses`, `speak_errors` flags
+- Use: `voice-mode normal` or `voice-mode-normal`
+
+**Waiting for Input Mode**:
+- Only speaks when Claude is waiting for your response
+- Triggers on: `AskUserQuestion` tool or `Stop` events with tool activity
+- Message: "Waiting for your input" or "Ready for your input"
+- Use: `voice-mode waiting` or `voice-mode-waiting`
+- Config: `filters.speak_only_when_waiting: true`
+
+**Task Completion Mode**:
+- Only speaks when Claude finishes responding (Stop events)
+- Ignores individual tool completions
+- Message: "Task complete"
+- Use: `voice-mode completion` or `voice-mode-completion`
+- Config: `filters.speak_only_on_completion: true`
+
 ### Filtering Logic
 
 Voice notifications only trigger when (lib/utils/event-filter.js):
 - `config.enabled` is true
 - `VOICE_NOTIFICATIONS` env var is not "false"
 - Rate limiter allows (max 1 per 2 seconds)
+- Notification mode allows the event (waiting/completion/normal)
 - Duration exceeds `filters.min_duration_ms` (default: 5000ms)
 - Tool is not in `filters.excluded_tools` (default: Read)
 - Event type matches enabled filters (`speak_completions`, `speak_responses`, `speak_errors`)
@@ -128,6 +158,9 @@ Installed via templates/shell-functions.sh into user's shell config:
 
 - `voice-on` / `voice-off` - Toggle via `VOICE_NOTIFICATIONS` env var
 - `voice-status` - Display current state and TTS provider
+- `voice-mode-waiting` - Switch to "waiting for input" mode
+- `voice-mode-completion` - Switch to "task completion" mode
+- `voice-mode-normal` - Switch to normal mode (all enabled events)
 
 ## File Structure
 
@@ -174,7 +207,9 @@ Key config options in voice-config.json:
     "excluded_tools": ["Read"],       // Tools to ignore
     "speak_errors": true,
     "speak_completions": true,
-    "speak_responses": true
+    "speak_responses": true,
+    "speak_only_when_waiting": false, // Only speak when Claude waits for input
+    "speak_only_on_completion": false // Only speak on task completion (Stop events)
   },
   "elevenlabs": {
     "voice_id": "...",                // Voice ID from ElevenLabs
